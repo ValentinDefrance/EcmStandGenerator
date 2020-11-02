@@ -1,5 +1,5 @@
-var express = require('express')
-var app = express()
+//var express = require('express')
+//var app = express()
 
 var phrase = "";
 
@@ -22,6 +22,7 @@ pouvoir.set("Coder","Peut hacker la réalité");
 function stand(plat, asso, activité){
 	
 	phrase = "Stand name : "+adjectif.get(plat)+" "+nom.get(asso)+"\nPower : "+pouvoir.get(activité);
+	document.querySelector("#get-value").textContent = phrase;
 	console.log(phrase);
 	return phrase;
 }
@@ -30,10 +31,21 @@ var platpref = "Steak";
 var assopref = "Chaudron";
 var actipref = "Coder";
 
-app.get('/submit', function(req, res){
-    return res.send(stand(platpref,assopref,actipref));
-});
+//app.get('/submit', function(req, res){
+//    return res.send(stand(platpref,assopref,actipref));
+//});
 
-app.listen(3000);
+//app.listen(3000);
 
 
+module.exports = {
+    stand: stand,
+}
+
+document.querySelector("#button").addEventListener("click", (event) => {
+	plat = document.querySelector("#plat").value
+	asso = document.querySelector("#asso").value
+	act = document.querySelector("#act").value
+    stand(plat,asso,act)
+    event.preventDefault()
+})
