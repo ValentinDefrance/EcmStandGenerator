@@ -4,7 +4,7 @@ var adjectif = new Map();
 var nom = new Map();
 var pouvoir = new Map ();
 
-adjectif.set("Chilli","Spicy");
+adjectif.set("chili","Spicy");
 adjectif.set("Burger","Texas");
 adjectif.set("Steak","Bloody");
 
