@@ -1,51 +1,30 @@
-//var express = require('express')
-//var app = express()
+var express = require('express')
+var app = express()
 
-var phrase = "";
+var morgan = require('morgan')
 
-var adjectif = new Map();
-var nom = new Map();
-var pouvoir = new Map ();
+//const logger = require('./logger')
 
-adjectif.set("Chilli","Spicy");
-adjectif.set("Burger","Texas");
-adjectif.set("Steak","Bloody");
+//app.use(morgan('dev', {stream: {write:(log) => {logger.http(log)}}}))
 
-nom.set("KSI","Buisenessman");
-nom.set("Chaudron","Witch");
-nom.set("MDV","Sailor");
+app.use("/static", express.static(__dirname + '/static'))
 
-pouvoir.set("Dormir","Contrôller les coussins dans un rayon de 20m");
-pouvoir.set("Boire","Sa force double à chaques shot pris");
-pouvoir.set("Coder","Peut hacker la réalité");
-
-function stand(plat, asso, activité){
-	
-	phrase = "Stand name : "+adjectif.get(plat)+" "+nom.get(asso)+"\nPower : "+pouvoir.get(activité);
-	document.querySelector("#get-value").textContent = phrase;
-	console.log(phrase);
-	return phrase;
-}
-
-var platpref = "Steak";
-var assopref = "Chaudron";
-var actipref = "Coder";
-
-//app.get('/submit', function(req, res){
-//    return res.send(stand(platpref,assopref,actipref));
-//});
-
-//app.listen(3000);
-
-
-module.exports = {
-    stand: stand,
-}
-
-document.querySelector("#button").addEventListener("click", (event) => {
-	plat = document.querySelector("#plat").value
-	asso = document.querySelector("#asso").value
-	act = document.querySelector("#act").value
-    stand(plat,asso,act)
-    event.preventDefault()
+app.get('/', (request, response) => {
+    response
+        .redirect(301, '/static/index.html')
 })
+
+api = require('./routes')
+app.use('/api', api)
+
+
+app.use(function (request,response) {
+
+    response.statusCode = 404;
+    response.setHeader('Content-Type', 'text/html');
+
+    response.end("<html><head><title>la quatre cent quatre</title></head><body><h1>Et c'est la 404.</h1><img  src=\"https://www.leblogauto.com/wp-content/uploads/2020/04/Peugeot-404-1.jpg\" /></body></html>");
+
+})
+
+app.listen(3000)

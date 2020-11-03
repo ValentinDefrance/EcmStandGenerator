@@ -2,15 +2,13 @@
   "name": "EcmStandGenerator",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "ValentinDefrance_LaurieDegeorges",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^26.6.1"
-  },
-  "scripts": {
-    "test": "jest"
+    "jest": "^26.6.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
   }
 }
