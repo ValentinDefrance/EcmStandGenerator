@@ -5,7 +5,7 @@ module.exports = router
 
 const stand = require('../stand')
 
-
+//todo : changer la route pour ?plat&asso&act
 router.get('/stand/:plat/:asso/:act', (req, res) => {
     res.json({
         "plat": req.params.plat,
