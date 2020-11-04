@@ -1,5 +1,3 @@
-var express = require('express')
-var app = express()
 
 var morgan = require('morgan')
 const logger = require('./logger')
@@ -11,6 +9,6 @@ config = {
 }
 
 
-app.listen(3000, () => {
+app.listen(config.port, () => {
     logger.info('server is running at: ' + 'http://' + config.baseUrl + ':' + config.port);
 });
